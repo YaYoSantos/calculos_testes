@@ -17,16 +17,21 @@ public class CalculoService {
 	private CalculoRepository calculoRepository;
 
 	public Calculo calcular(Entrada entrada) {
+	    List<Integer> lista = entrada.getLista();
 
-		Calculo calculo = new Calculo();
-		calculo.setLista(entrada.getLista());
-		calculo.setSoma(this.soma(entrada.getLista()));
-		calculo.setMedia(this.media(entrada.getLista()));
-		calculo.setMediana(this.mediana(entrada.getLista()));
+	    Calculo calculo = new Calculo();
+	    calculo.setLista(lista);
+	    calculo.setSoma(this.soma(lista));
+	    calculo.setMedia(this.media(lista));
+	    calculo.setMediana(this.mediana(lista));
+	    calculo.setMaior(this.maior(lista));
+	    calculo.setMenor(this.menor(lista));
+	    calculo.setTotalElementos(lista.size());
 
-		return calculo;
-
+	    return calculo;
 	}
+
+
 
 
 	public int soma(List<Integer> lista) {
@@ -42,7 +47,10 @@ public class CalculoService {
 
 
 	public double media(List<Integer> lista) {
-		return this.soma(lista) / lista.size();
+		
+		double resultado =  this.soma(lista) / lista.size();
+		System.out.println(resultado);
+		return resultado;
 	}
 
 
@@ -61,5 +69,21 @@ public class CalculoService {
 	        return (meio1 + meio2) / 2;
 	    }
 	}
+	
+	public int maior(List<Integer> lista) {
+	    if (lista == null || lista.isEmpty()) {
+	        throw new IllegalArgumentException("A lista não pode ser nula ou vazia");
+	    }
+	    return Collections.max(lista);
+	}
+
+	public int menor(List<Integer> lista) {
+	    if (lista == null || lista.isEmpty()) {
+	        throw new IllegalArgumentException("A lista não pode ser nula ou vazia");
+	    }
+	    return Collections.min(lista);
+	}
+
+	
 
 }

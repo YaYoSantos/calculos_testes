@@ -25,5 +25,9 @@ public class Calculo {
 	private int soma;
 	private double media;
 	private double mediana;
+	private int maior;
+	private int menor;
+	private int totalElementos;
+
 	
 }
